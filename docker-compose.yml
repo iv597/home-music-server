@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  icecast:
+    image: vitiman/alpine-icecast:latest
+    ports:
+      - "8000:8000"
+    networks:
+      - music_stack
+
+  mopidy:
+    image: iv597/mopidy:latest
+    ports:
+      - "6600:6600"
+      - "6680:6680"
+    depends_on:
+      - icecast
+    networks:
+      - music_stack
+    volumes:
+      - ./music:/var/lib/mopidy/media
+
+networks:
+  music_stack:
+    driver: bridge
