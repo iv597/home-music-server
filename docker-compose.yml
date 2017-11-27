@@ -19,6 +19,7 @@ services:
     volumes:
       - /data/music:/var/lib/mpd/music
       - /data/music_lossy:/var/lib/mpd/music/lossy
+      - /data/music_db:/var/lib/mpd/database
 
 networks:
   music_stack:
