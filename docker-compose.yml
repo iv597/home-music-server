@@ -8,17 +8,17 @@ services:
     networks:
       - music_stack
 
-  mopidy:
-    image: iv597/mopidy:latest
+  mpd:
+    image: vitiman/alpine-mpd:latest
     ports:
       - "6600:6600"
-      - "6680:6680"
     depends_on:
       - icecast
     networks:
       - music_stack
     volumes:
-      - /data/music:/var/lib/mopidy/media
+      - /data/music:/var/lib/mpd/music
+      - /data/music_lossy:/var/lib/mpd/music/lossy
 
 networks:
   music_stack:
